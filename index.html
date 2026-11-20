@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Santunu Behera – AI/ML Student Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060a13;--surface:#0d1422;--line:#1b2a45;--text:#e6edf7;--muted:#90a1bf;
+  --cyan:#22d3ee;--blue:#3b82f6;
+  --head:"Space Grotesk","Segoe UI",system-ui,sans-serif;
+  --body:"DM Sans","Segoe UI",system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+
+/* nav */
+header{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(6,10,19,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav{display:flex;align-items:center;gap:1.25rem;height:64px}
+.brand{font:700 1.15rem var(--head);color:var(--text);margin-right:auto}
+.brand:hover{text-decoration:none}
+.brand span{color:var(--cyan)}
+.links{display:flex;gap:1.5rem}
+.links a{color:var(--muted);font-weight:500;font-size:.98rem}
+.links a:hover{color:var(--text);text-decoration:none}
+.search{position:relative}
+.search input{width:190px;background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:.5rem 1rem .5rem 2.2rem;font:inherit;font-size:.95rem;transition:width .2s,border-color .2s}
+.search input:focus{width:240px;border-color:var(--cyan);outline:none;box-shadow:0 0 0 3px rgba(34,211,238,.15)}
+.search svg{position:absolute;left:.8rem;top:50%;translate:0 -50%;width:15px;height:15px;stroke:var(--muted);fill:none;stroke-width:2}
+#searchNote{position:absolute;right:0;top:calc(100% + 8px);font-size:.85rem;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.35rem .7rem;white-space:nowrap}
+#searchNote[hidden]{display:none}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:7rem 0 4rem;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 80% 40%,rgba(34,211,238,.13),transparent 70%),radial-gradient(40% 40% at 10% 90%,rgba(59,130,246,.12),transparent 70%)}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:700;letter-spacing:-.03em}
+.hero h1 .glow{color:var(--cyan);text-shadow:0 0 32px rgba(34,211,238,.45)}
+.tagline{font-size:clamp(1.1rem,2.2vw,1.35rem);color:var(--muted);margin:1.25rem 0 1.75rem;max-width:30ch}
+.email-row{display:inline-flex;align-items:center;gap:.5rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.35rem .35rem .35rem 1rem;max-width:100%;flex-wrap:wrap}
+.email-row a{color:var(--text);font-weight:500;overflow-wrap:anywhere}
+button,.btn{font:500 1rem var(--body);cursor:pointer;border-radius:10px;padding:.7rem 1.4rem;border:1px solid transparent;display:inline-block;transition:transform .15s,box-shadow .15s,background .15s}
+.copy{background:transparent;color:var(--cyan);border-color:var(--line);padding:.4rem .9rem;font-size:.9rem}
+.copy:hover{background:rgba(34,211,238,.1)}
+.cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:1.75rem}
+.btn.primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#04101c;font-weight:700}
+.btn.primary:hover{box-shadow:0 0 28px rgba(34,211,238,.4);transform:translateY(-2px);text-decoration:none}
+.btn.ghost{border-color:var(--cyan);color:var(--cyan)}
+.btn.ghost:hover{background:rgba(34,211,238,.1);text-decoration:none}
+#net{width:100%;height:auto;max-height:440px}
+#net line{stroke:var(--line);stroke-width:1}
+#net circle{fill:var(--bg);stroke:var(--blue);stroke-width:1.5}
+#net circle.on{stroke:var(--cyan);fill:var(--cyan);filter:drop-shadow(0 0 6px var(--cyan));animation:pulse 3.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* sections */
+section.block{padding:6rem 0;border-top:1px solid var(--line)}
+section.block h2{font-size:clamp(1.9rem,4vw,2.75rem);margin-bottom:1rem;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:62ch;margin:0 0 2.5rem}
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem}
+.about p{margin:0 0 1rem;max-width:62ch}
+.skills{display:flex;flex-wrap:wrap;gap:.6rem;align-content:flex-start}
+.skills h3{width:100%;font-size:1.1rem;margin-bottom:.4rem}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:999px;padding:.35rem .95rem;font-size:.95rem}
+.chip.hot{border-color:rgba(34,211,238,.5);color:var(--cyan)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:.8rem;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--cyan);transform:translateY(-3px)}
+.card[hidden]{display:none}
+.card h3{font-size:1.25rem}
+.card p{margin:0;color:var(--muted);font-size:1rem;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tags span{font-size:.82rem;color:var(--cyan);background:rgba(34,211,238,.08);border-radius:6px;padding:.15rem .6rem}
+.status{font-size:.88rem;color:var(--muted)}
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem}
+.contact .info p{margin:0 0 1.2rem}
+.social{display:flex;gap:.8rem;flex-wrap:wrap}
+form{display:grid;gap:1rem}
+label{display:grid;gap:.4rem;font-weight:500;font-size:.95rem}
+input[type=text],input[type=email],textarea{width:100%;background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:.75rem 1rem;font:inherit}
+textarea{min-height:140px;resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,211,238,.15)}
+#formNote{color:var(--muted);font-size:.92rem;margin:0;min-height:1.4em}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.92rem}
+
+@media (max-width:860px){
+  .hero-grid,.about,.contact{grid-template-columns:1fr}
+  #net{max-height:260px;order:-1}
+  .links{display:none}
+  .search input,.search input:focus{width:150px}
+  .search input:focus{width:170px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  #net circle.on{animation:none}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">santunu<span>.ai</span></a>
+    <nav class="links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="search" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Search site" aria-label="Search this site" autocomplete="off">
+      <div id="searchNote" hidden></div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Santunu <span class="glow">Behera</span></h1>
+      <p class="tagline">B.Tech Artificial Intelligence &amp; Machine Learning (AIML) Student.</p>
+      <div class="email-row">
+        <a href="mailto:beherasantunu2008@gmail.com">beherasantunu2008@gmail.com</a>
+        <button class="copy" type="button" data-copy="beherasantunu2008@gmail.com">Copy email</button>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn ghost" href="#contact">Contact Me</a>
+      </div>
+    </div>
+    <svg id="net" viewBox="0 0 400 360" role="img" aria-label="Animated neural network illustration"></svg>
+  </div>
+</section>
+
+<section class="block" id="about">
+  <div class="wrap about">
+    <div>
+      <h2>About me</h2>
+      <p>I'm a B.Tech student in Artificial Intelligence and Machine Learning. My coursework covers the math behind learning algorithms, data structures, and how to turn models into working software.</p>
+      <p>I'm driven by building intelligent systems that solve real problems, from training a first classifier to shipping something people can actually use. I learn best by building, so every skill below is tied to a project.</p>
+    </div>
+    <div class="skills">
+      <h3>Key skills</h3>
+      <span class="chip hot">Python</span>
+      <span class="chip hot">Machine Learning</span>
+      <span class="chip">Data Structures</span>
+      <span class="chip">Web Development</span>
+      <span class="chip">Deep Learning</span>
+      <span class="chip">Data Analysis</span>
+      <span class="chip">Git &amp; GitHub</span>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <p class="lead">Upcoming AI/ML work. Titles, descriptions, and repository links are placeholders to replace as each project ships.</p>
+    <div class="grid" id="grid">
+      <article class="card">
+        <h3>Image Classifier</h3>
+        <p>A convolutional neural network that recognises everyday objects from photos.</p>
+        <div class="tags"><span>Python</span><span>TensorFlow</span><span>CNN</span></div>
+        <span class="status">Coming soon · <a href="https://github.com/" target="_blank" rel="noopener">GitHub repo</a></span>
+      </article>
+      <article class="card">
+        <h3>Sentiment Analyzer</h3>
+        <p>An NLP model that reads reviews and labels them positive, neutral, or negative.</p>
+        <div class="tags"><span>Python</span><span>NLP</span><span>scikit-learn</span></div>
+        <span class="status">Coming soon · <a href="https://github.com/" target="_blank" rel="noopener">GitHub repo</a></span>
+      </article>
+      <article class="card">
+        <h3>House Price Predictor</h3>
+        <p>A regression pipeline with a small web front end for entering property details.</p>
+        <div class="tags"><span>Pandas</span><span>Regression</span><span>Flask</span></div>
+        <span class="status">Coming soon · <a href="https://github.com/" target="_blank" rel="noopener">GitHub repo</a></span>
+      </article>
+      <article class="card">
+        <h3>Study Chatbot</h3>
+        <p>A chatbot that answers questions about course notes using retrieval and a language model.</p>
+        <div class="tags"><span>LLM</span><span>Python</span><span>JavaScript</span></div>
+        <span class="status">Coming soon · <a href="https://github.com/" target="_blank" rel="noopener">GitHub repo</a></span>
+      </article>
+    </div>
+    <p id="noProjects" class="lead" hidden>No projects match that search.</p>
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <div class="wrap contact">
+    <div class="info">
+      <h2>Contact</h2>
+      <p class="lead" style="margin-bottom:1.5rem">Have a project idea, internship, or question? Send a message and I'll reply by email.</p>
+      <p><a href="mailto:beherasantunu2008@gmail.com">beherasantunu2008@gmail.com</a></p>
+      <div class="social">
+        <a class="btn ghost" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <form id="form" novalidate>
+      <label>Name<input type="text" id="name" required autocomplete="name"></label>
+      <label>Email<input type="email" id="email" required autocomplete="email"></label>
+      <label>Message<textarea id="msg" required></textarea></label>
+      <button class="btn primary" type="submit">Send message</button>
+      <p id="formNote" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© <span id="yr"></span> Santunu Behera</div></footer>
+
+<script>
+(function(){
+  var EMAIL="beherasantunu2008@gmail.com";
+  document.getElementById("yr").textContent=new Date().getFullYear();
+
+  // Neural network illustration
+  var svg=document.getElementById("net"),NS="http://www.w3.org/2000/svg";
+  var layers=[3,5,5,2],xs=[50,150,250,350],pts=[];
+  layers.forEach(function(n,i){
+    var col=[];
+    for(var j=0;j<n;j++)col.push({x:xs[i],y:180+(j-(n-1)/2)*58});
+    pts.push(col);
+  });
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e}
+  for(var i=0;i<pts.length-1;i++)pts[i].forEach(function(a){pts[i+1].forEach(function(b){el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y})})});
+  var k=0;
+  pts.forEach(function(col){col.forEach(function(p){
+    var c=el("circle",{cx:p.x,cy:p.y,r:9});
+    if(k%3===0){c.setAttribute("class","on");c.style.animationDelay=(k*0.23)+"s"}
+    k++;
+  })});
+
+  // Copy email
+  document.querySelectorAll("[data-copy]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var done=function(){var t=b.textContent;b.textContent="Copied";setTimeout(function(){b.textContent=t},1800)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(b.dataset.copy).then(done,fallback)}else fallback();
+      function fallback(){var t=document.createElement("textarea");t.value=b.dataset.copy;document.body.appendChild(t);t.select();try{document.execCommand("copy");done()}catch(e){b.textContent="Press Ctrl+C"}t.remove()}
+    });
+  });
+
+  // Search: filters project cards live, Enter jumps to the best matching section
+  var input=document.getElementById("search"),note=document.getElementById("searchNote"),
+      cards=[].slice.call(document.querySelectorAll(".card")),none=document.getElementById("noProjects"),
+      secs=["about","projects","contact"].map(function(id){return document.getElementById(id)});
+  function run(jump){
+    var q=input.value.trim().toLowerCase();
+    var shown=0;
+    cards.forEach(function(c){var m=!q||c.textContent.toLowerCase().indexOf(q)>-1;c.hidden=!m;if(m)shown++});
+    none.hidden=!(q&&shown===0);
+    if(!q){note.hidden=true;return}
+    var hit=null;
+    if(shown>0&&cards.some(function(c){return !c.hidden})&&q&&secs[1].textContent.toLowerCase().indexOf(q)>-1)hit=secs[1];
+    secs.forEach(function(s){if(!hit&&s.textContent.toLowerCase().indexOf(q)>-1)hit=s});
+    if(!hit){note.textContent="No matches found";note.hidden=false;return}
+    note.textContent=(shown&&hit===secs[1]?shown+" project"+(shown>1?"s":"")+" · ":"")+"Found in "+hit.id;
+    note.hidden=false;
+    if(jump)hit.scrollIntoView({behavior:"smooth"});
+  }
+  input.addEventListener("input",function(){run(false)});
+  input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();run(true)}if(e.key==="Escape"){input.value="";run(false);input.blur()}});
+
+  // Contact form: opens the visitor's email app with the message filled in
+  document.getElementById("form").addEventListener("submit",function(e){
+    e.preventDefault();
+    var n=document.getElementById("name").value.trim(),m=document.getElementById("email").value.trim(),g=document.getElementById("msg").value.trim(),
+        out=document.getElementById("formNote");
+    if(!n||!g||!/^\S+@\S+\.\S+$/.test(m)){out.textContent="Enter your name, a valid email, and a message.";return}
+    var body=g+"\n\nFrom: "+n+" ("+m+")";
+    window.location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Portfolio message from "+n)+"&body="+encodeURIComponent(body);
+    out.textContent="Opening your email app. If nothing opens, write to "+EMAIL+".";
+  });
+})();
+</script>
+</body>
+</html>
